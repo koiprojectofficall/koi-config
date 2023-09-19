@@ -1,0 +1,38 @@
+dataBaseURL: jdbc:postgresql://localhost:5432/koi
+dataBaseUsername: postgres
+dataBasePassword: Ga.4567.
+logbackURL: http://localhost:8000/native/native/main/LogConfiguration/EventServiceLogback.xml
+eurakaUsername: grkem
+eurakaPassword: 1234
+eurakaIP: localhost:8001/eureka/
+
+event:
+  lastUpdateDateline: 5
+  eventSaveMinStar: 2.5
+  
+server:
+  port: 8601
+spring:
+  application:
+    name: EVENT-SERVICE
+  datasource:
+    username: ${dataBaseUsername}
+    url: ${dataBaseURL}
+    password: ${dataBasePassword}
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: none
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eurakaUsername}:${eurakaPassword}@${eurakaIP}
+    healthcheck:
+      enabled: true
+logging:
+  config: ${logbackURL}

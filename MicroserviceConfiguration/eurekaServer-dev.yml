@@ -1,0 +1,32 @@
+logbackURL: http://localhost:8000/native/native/main/LogConfiguration/EurakaServerLogback.xml
+zipkinServerURL: http://localhost:9411
+
+
+server:
+  port: 8001
+spring:
+  application:
+    name: EUREKA-SERVER
+  security:
+    user:
+      name: grkem
+      password: 1234
+  zipkin:
+    base-url: ${zipkinServerURL}
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    healthCheckUrl: http://${eureka.instance.hostname}:${server.port}/actuator/health
+    homePageUrl: http://${eureka.instance.hostname}:${server.port}
+  server:
+    getWaitTimeInMsWhenSyncEmpty: 2
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://grkem:1234@myDomain:8011/eureka
+encrypt:
+  key: koiappconfigsecretkey
+logging:
+  config: ${logbackURL}

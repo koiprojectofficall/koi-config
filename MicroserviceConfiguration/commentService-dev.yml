@@ -1,0 +1,37 @@
+dataBaseURL: jdbc:postgresql://localhost:5431/koi
+dataBaseUsername: postgres
+dataBasePassword: Ga.4567.
+logbackURL: http://localhost:8000/native/native/main/LogConfiguration/CommentServiceLogback.xml
+eurakaUsername: grkem
+eurakaPassword: 1234
+eurakaIP: localhost:8001/eureka/
+
+
+server:
+  port: 8602
+spring:
+  application:
+    name: COMMENT-SERVICE
+  datasource:
+    username: ${dataBaseUsername}
+    url: ${dataBaseURL}
+    password: ${dataBasePassword}
+  jpa:
+    database-platform: org.hibernate.spatial.dialect.postgis.PostgisDialect
+    hibernate:
+      dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
+      database: postgresql
+      ddl-auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eurakaUsername}:${eurakaPassword}@${eurakaIP}
+    healthcheck:
+      enabled: true
+logging:
+  config: ${logbackURL} 
